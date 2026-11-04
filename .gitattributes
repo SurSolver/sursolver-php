@@ -1,0 +1,11 @@
+# Keep `composer require` downloads to the library itself.
+/.github export-ignore
+/conformance export-ignore
+/contract export-ignore
+/scripts export-ignore
+/tests export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/phpstan.neon export-ignore
+/phpunit.xml export-ignore
+/SPEC_VERSION export-ignore

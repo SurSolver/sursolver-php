@@ -1,0 +1,64 @@
+{
+    "name": "sursolver/sursolver",
+    "description": "Official PHP client for the SurSolver captcha solver API. Solve reCAPTCHA v3, Cloudflare Turnstile, Cloudflare Challenge (cf_clearance), GeeTest, DataDome, AWS WAF, Akamai, Kasada and image captchas from PHP with one call.",
+    "type": "library",
+    "keywords": [
+        "captcha",
+        "captcha-solver",
+        "recaptcha",
+        "recaptcha-v3",
+        "turnstile",
+        "cloudflare",
+        "cf-clearance",
+        "geetest",
+        "datadome",
+        "aws-waf",
+        "akamai",
+        "kasada",
+        "image-captcha",
+        "sursolver"
+    ],
+    "homepage": "https://sursolver.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SurSolver",
+            "homepage": "https://sursolver.com"
+        }
+    ],
+    "support": {
+        "docs": "https://sursolver.com/docs",
+        "source": "https://github.com/sursolver/sursolver-php"
+    },
+    "require": {
+        "php": ">=8.3",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.0",
+        "phpstan/phpstan": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SurSolver\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SurSolver\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse",
+        "smoke": "php scripts/smoke.php"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3.0"
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}

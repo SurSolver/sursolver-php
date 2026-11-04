@@ -1,0 +1,37 @@
+name: release
+
+# One workflow: every push and pull request runs the full test job. Packagist publishes by crawling
+# the tag (GitHub App or webhook); on a pushed tag vX.Y.Z the publish job checks that the tag matches
+# Client::VERSION, but only after the test job has passed.
+on:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl, json
+          coverage: none
+      - run: composer validate --strict
+      - run: composer install --no-interaction --no-progress
+      - run: vendor/bin/phpunit
+      - run: vendor/bin/phpstan analyse --no-progress
+
+  publish:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag matches Client::VERSION
+        run: grep -q "VERSION = '${GITHUB_REF_NAME#v}'" src/Client.php
